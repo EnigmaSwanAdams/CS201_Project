@@ -2,9 +2,10 @@
 * 
 * main for my project which
 * uses a basic user interface to 
-* get information, and then call various
+* get information, and then call
 * member functions for the class RGBImage
 * defined in the included header and source file below
+* to multiply two images together and write the output
 */
 
 //this is the file path in my commputer, but you will
@@ -39,12 +40,16 @@ int main() {
 		
 
 		if (mLayer.substr(mLayer.size() - 4) == ".ppm") {
+			//read in both images
 			RGBImage image1(inFile);
 			cout << endl;
 			RGBImage image2(mLayer);
+
+			//multiply them together
 			RGBImage imageMultiplied(image1, image2);
-			//write the image
-			imageMultiplied.writeImage("supernewParrot");
+
+			//write the multiplied image
+			imageMultiplied.writeImage("demonstrationParrot");
 		}
 
 		
@@ -58,16 +63,17 @@ int main() {
 			int g = stoi(strg, 0, 16);
 			int b = stoi(strb, 0, 16);
 
-
-			// read int he file and get info using the class RGBimage
+			// read in the file and get info using the class RGBimage
 			RGBImage image(inFile);
 
 			//use member function to write the new image
 			RGBImage imageMultiplied(image, r, g, b);	
+
 			//write the image
 			imageMultiplied.writeImage("supernewParrot");
 		}
 
+		//let the user decide to go again or not
 		string input;
 		cout << "Enter type a lowercase x to exit the program or anything else to perform another action. ";
 		cin >> input;
