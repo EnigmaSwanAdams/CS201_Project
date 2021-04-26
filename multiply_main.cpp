@@ -40,8 +40,11 @@ int main() {
 
 		if (mLayer.substr(mLayer.size() - 4) == ".ppm") {
 			RGBImage image1(inFile);
+			cout << endl;
 			RGBImage image2(mLayer);
-			image1.writeMultipliedPPMfile(image1, image2);
+			RGBImage imageMultiplied(image1, image2);
+			//write the image
+			imageMultiplied.writeImage("supernewParrot");
 		}
 
 		
@@ -60,10 +63,20 @@ int main() {
 			RGBImage image(inFile);
 
 			//use member function to write the new image
-			image.writeMultipliedPPMfileSolid(inFile, r, g, b);
-			
+			RGBImage imageMultiplied(image, r, g, b);	
+			//write the image
+			imageMultiplied.writeImage("supernewParrot");
+		}
+
+		string input;
+		cout << "Enter type a lowercase x to exit the program or anything else to perform another action. ";
+		cin >> input;
+		if (input == "x") {
+			break;
 		}
 	}
+
+
 	
 	return 0;
 }
